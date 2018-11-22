@@ -132,8 +132,31 @@ namespace HW_20._11._18_List_
                         break;
                     case "5":
                         {
-                            var tmp = debtors.Where(x => (x.BirthDay.Month > 11) && (x.BirthDay.Month < 3));
+                            var tmp = debtors.Where(x => (x.BirthDay.Month > 11) || (x.BirthDay.Month < 3));
                             Console.WriteLine("winter birth");
+                            foreach (var item in tmp)
+                            {
+                                Console.WriteLine(item.ToString());
+                            }
+                        }
+                        break;
+                    case "6":
+                        {
+                            int debs=0;
+                            foreach (var item in debtors)
+                            {
+                                debs += item.Debt;
+                            }
+                            debs /= debtors.Count;
+                            var tmp = debtors.Where(x => x.Debt > debs);
+                            tmp = tmp.OrderBy(x => x.FullName.Substring(x.FullName.LastIndexOf(' ')));
+                            Console.WriteLine("Average Debtors (Sorted by Surnames)");
+                            foreach (var item in tmp)
+                            {
+                                Console.WriteLine(item.ToString());
+                            }
+                            tmp = tmp.OrderByDescending(x => x.Debt);
+                            Console.WriteLine("\nAverage Debtors (Sorted by Debts)\n");
                             foreach (var item in tmp)
                             {
                                 Console.WriteLine(item.ToString());
