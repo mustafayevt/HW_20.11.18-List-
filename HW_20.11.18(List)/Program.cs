@@ -163,6 +163,25 @@ namespace HW_20._11._18_List_
                             }
                         }
                         break;
+                    case "7":
+                        {
+                            var tmp = debtors.Where(x => (x.Phone.IndexOf('8') == -1));
+                            foreach (var item in tmp)
+                            {
+                                Console.WriteLine($"{item.FullName.Substring(item.FullName.LastIndexOf(' ')+1)} {DateTime.Now.Year- item.BirthDay.Year} {item.Debt}");
+                            }
+                        }
+                        break;
+                    case "8":
+                        {
+                            debtors.Where(x => (x.FullName.ToLower().Count() - x.FullName.ToLower().GroupBy(r => r).Count()-1) >=6);
+                            var tt = debtors.Where(x => (x.FullName.Length - x.FullName.Distinct().Count()) >= 3);
+                            foreach (var item in tt)
+                            {
+                                Console.WriteLine(item.ToString());
+                            }
+                        }
+                        break;
                 }
                 Console.ReadKey();
             }
