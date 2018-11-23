@@ -86,13 +86,25 @@ namespace HW_20._11._18_List_
             while (true)
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine(@"
+     1  - Email with 'rhyta.com' or 'dayrep.com'  |  9  - The Year Which The Most of Debtors Were Borned
+     2  - Age 26-36                               |  10 - 5 Most High Debts
+     3  - Debts > 5000                            |  11 - The All Debts Sum
+     4  - Name < 13 Symbol                        |  12 - List of Debtors Who Have Seen Second World War
+     5  - Born in Winter                          |  13 - List of Debtor Which Does Have Unique Phone Number
+     6  - Average Debts                           |  14 - The Debtors Which Can Close Debt While They Birthday
+     7  - Phone Number Without '8'                |  15 - The Debtors Which Which Does Have 'smile' In Their Full Names
+     8  - 3 Same Symbol in Name or Surname        |");
+                Console.ResetColor();
                 var choice = Console.ReadLine();
+                Console.BackgroundColor = ConsoleColor.Gray;
+                Console.ForegroundColor = ConsoleColor.Black;
                 switch (choice)
                 {
                     case "1":
                         {
                             var tmp = debtors.Where(x => x.Email.Contains("rhyta.com") || x.Email.Contains("dayrep.com"));
-                            Console.WriteLine("rhyta.com or dayrep.com");
                             foreach (var item in tmp)
                             {
                                 Console.WriteLine(item.ToString());
@@ -103,7 +115,6 @@ namespace HW_20._11._18_List_
                         {
                             int now = DateTime.Now.Year;
                             var tmp = debtors.Where(x=>(now- x.BirthDay.Year) >= 26 && (now- x.BirthDay.Year) <= 36);
-                            Console.WriteLine("Age 26-36");
                             foreach (var item in tmp)
                             {
                                 Console.WriteLine(item.ToString());
@@ -113,7 +124,6 @@ namespace HW_20._11._18_List_
                     case "3":
                         {
                             var tmp = debtors.Where(x => x.Debt > 5000);
-                            Console.WriteLine("Debts > 5000");
                             foreach (var item in tmp)
                             {
                                 Console.WriteLine(item.ToString());
@@ -123,7 +133,6 @@ namespace HW_20._11._18_List_
                     case "4":
                         {
                             var tmp = debtors.Where(x => (x.FullName.Length - 1 >= 13) && ((x.Phone.IndexOf('7') != (x.Phone.LastIndexOf('7')))));
-                            Console.WriteLine("name < 13 symbol");
                             foreach (var item in tmp)
                             {
                                 Console.WriteLine(item.ToString());
@@ -133,7 +142,6 @@ namespace HW_20._11._18_List_
                     case "5":
                         {
                             var tmp = debtors.Where(x => (x.BirthDay.Month > 11) || (x.BirthDay.Month < 3));
-                            Console.WriteLine("winter birth");
                             foreach (var item in tmp)
                             {
                                 Console.WriteLine(item.ToString());
@@ -244,6 +252,8 @@ namespace HW_20._11._18_List_
                         }
                         break;
                 }
+                Console.ResetColor();
+                Console.WriteLine("any key for return main menu");
                 Console.ReadKey();
             }
         }
