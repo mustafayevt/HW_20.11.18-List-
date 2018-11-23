@@ -77,7 +77,7 @@ namespace HW_20._11._18_List_
             new Debtor("Dave N. Rodriguez", DateTime.Parse("January 21, 1938"), "214-540-2499", "DaveNRodriguez@rhyta.com", "1890 Poco Mas Drive Dallas, TX 75247", 9132),
             new Debtor("James E. Denning", DateTime.Parse("May 4, 1988"), "504-289-8640", "JamesEDenning@jourrapide.com", "1444 Rose Avenue Metairie, LA 70001", 8176),
             new Debtor("Richard M. Thomas", DateTime.Parse("February 13, 1972"), "510-735-3359", "RichardMThomas@jourrapide.com", "4454 Green Avenue Oakland, CA 94609", 7875),
-            new Debtor("Lakisha R. Forrest", DateTime.Parse("December 1, 1973"), "334-830-1181", "LakishaRForrest@armyspy.com", "3121 Quarry Drive Montgomery, AL 36117", 3088),
+            new Debtor("Lakisha R. Forrest", DateTime.Parse("December 1, 1973"), "334-830-1181", "LakishaRForrest@armyspy.com", "3121 Quarry Drive Montgomery, AL 36117", 30),
             new Debtor("Pamela H. Besamuilechamp", DateTime.Parse("November 20, 1959"), "801-559-6347", "PamelaHBeauchamp@jourrapide.com", "3239 Tori Lane Salt Lake City, UT 84104", 6588)
         };
 
@@ -226,7 +226,7 @@ namespace HW_20._11._18_List_
                         break;
                     case "14":
                         {
-                            var tmp = debtors.Where(x => (DateTime.Now.Month - x.BirthDay.Month) * 500 >= x.Debt);
+                            var tmp = debtors.Where(x => (x.BirthDay.Month - DateTime.Now.Month) * 500 > x.Debt);
                             foreach (var item in tmp)
                             {
                                 Console.WriteLine(item.ToString());
@@ -235,9 +235,9 @@ namespace HW_20._11._18_List_
                         break;
                     case "15":
                         {
-                            string a = "smile";
-                            var tmp = debtors.Where(x => x.FullName.Any(s=>s.Equals("smile")));
-                            foreach (var item in tmp)
+                            char[] c = new char[] { 's', 'm', 'i', 'l', 'e' };
+                            var tt = debtors.Where(x => c.All(s=> x.FullName.ToLower().Contains(s)));
+                            foreach (var item in tt)
                             {
                                 Console.WriteLine(item.ToString());
                             }
