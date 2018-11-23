@@ -251,6 +251,8 @@ namespace HW_20._11._18_List_
                             }
                         }
                         break;
+                    default: Console.WriteLine("There is no command like this");
+                        break;
                 }
                 Console.ResetColor();
                 Console.WriteLine("any key for return main menu");
